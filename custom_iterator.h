@@ -65,12 +65,12 @@ namespace CS2312 {
 
             bool operator==(const self_type& rhs) const
             {
-                return (rhs.__ptr== __ptr); //wondering (rhs.__ptr == this -> __ptr ??)
+                return (rhs.__ptr== this->__ptr); //wondering (rhs.__ptr == this -> __ptr ??)
             }
 
             bool operator!=(const self_type& rhs) const
             {
-                return (rhs.__ptr != __ptr); // same as ==
+                return (rhs.__ptr != this->__ptr); // same as ==
             }
 
         private:
@@ -120,12 +120,12 @@ namespace CS2312 {
 
             bool operator==(const self_type& rhs) const
             {
-                return (rhs.__ptr == __ptr); //check again
+                return (rhs.__ptr == this->__ptr); //check again
             }
 
             bool operator!=(const self_type& rhs) const
             {
-                    return (rhs.__ptr != __ptr);   //check again
+                    return (rhs.__ptr != this->__ptr);   //check again
             }
         private:
 
