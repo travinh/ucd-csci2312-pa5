@@ -35,7 +35,6 @@ namespace CS2312 {
             std:: string str1 = a, str2 = b;
             return (str1 < str2);
         }
-
     };
 }
 

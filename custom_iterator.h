@@ -146,7 +146,6 @@ namespace CS2312 {
             __data = new T[__size];
         }
 
-
         ~fixed_array()
         {
             delete[] __data; //delete
