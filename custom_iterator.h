@@ -1,107 +1,42 @@
 //
-// Created by Ivo Georgiev on 5/3/16.
+// Created by Vinh Van Tran on 5/8/16.
 //
 
-#ifndef UCD_CSCI2312_PA5_IMPL_CUSTOM_ITERATOR_H
-#define UCD_CSCI2312_PA5_IMPL_CUSTOM_ITERATOR_H
+#ifndef UCD_CSCI2312_PA5_LESS_FUNCTOR_H
+#define UCD_CSCI2312_PA5_LESS_FUNCTOR_H
 
-// Naive partial implementation of a custom iterator.
-// After Jeet Sukumaran https://github.com/jeetsukumaran
-
-#include <cstddef>
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <iterator>
-#include <initializer_list>
 
 namespace CS2312 {
 
-    template <typename T>
-    class fixed_array {
 
+    template<typename T>
+    class less {
     public:
-
-        typedef std::size_t size_type;
-
-        class iterator {
-
-        public:
-
-            typedef iterator self_type;
-            typedef T value_type;
-            typedef T& reference;
-            typedef T* pointer;
-            typedef std::forward_iterator_tag iterator_category;
-            typedef size_type difference_type;
-
-            iterator(pointer ptr);
-            self_type operator++();
-            self_type operator++(int junk);
-            reference operator*();
-            pointer operator->();
-            bool operator==(const self_type& rhs) const;
-            bool operator!=(const self_type& rhs) const;
-
-        private:
-
-            pointer __ptr;
-
-        };
-
-        class const_iterator {
-
-        public:
-
-            typedef const_iterator self_type;
-            typedef T value_type;
-            typedef T& reference;
-            typedef T* pointer;
-            typedef std::forward_iterator_tag iterator_category;
-            typedef size_type difference_type;
-
-            const_iterator(pointer ptr);
-            self_type operator++();
-            self_type operator++(int junk);
-            const value_type& operator*() const;
-            const value_type* operator->() const;
-            bool operator==(const self_type& rhs) const;
-            bool operator!=(const self_type& rhs) const;
-
-        private:
-
-            pointer __ptr;
-
-        };
-
-
-        fixed_array(size_type size);
-
-        fixed_array(std::initializer_list<T> list);
-
-        ~fixed_array();
-
-        size_type size() const;
-
-        T& operator[](size_type index);
-
-        const T& operator[](size_type index) const;
-
-        iterator begin();
-
-        iterator end();
-
-        const_iterator begin() const;
-
-        const_iterator end() const;
-
-    private:
-
-        T* __data;
-        size_type __size;
+        bool operator()(T const &a, T const &b) {
+            return (a < b);
+        }
 
     };
 
+    template<>
+    class less<std::string> {
+    public:
+        bool operator()(const string &a, const string &b) {
+            return (a < b);
+        }
+    };
+
+    template<>
+    class less<const char *>
+    {
+    public:
+        bool operator()(const char * a, const char * b)
+        {
+            std:: string str1 = a, str2 = b;
+            return (str1 < str2);
+        }
+
+    };
 }
 
-#endif //UCD_CSCI2312_PA5_IMPL_CUSTOM_ITERATOR_H
+#endif //UCD_CSCI2312_PA5_LESS_FUNCTOR_H
